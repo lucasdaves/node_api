@@ -1,29 +1,19 @@
 import { Router } from 'express';
-import { RoleModel } from '../models/role_model';
 import { ErrorModel } from '../models/error_model';
-import { v4 as uuid} from 'uuid'
+import { RoleRepository } from '../repositories/role_repository';
 
 const router = Router()
-
-const entities: RoleModel[] = []
+const repository = new RoleRepository()
 
 router.get('/', (req, res) => {
-    res.status(200).json(entities);
+    const roles = repository.findAll()
+    res.status(200).json(roles)
 });
 
 router.post('/', (req, res) => {
     const {name} = req.body
-
     if(!name) throw new ErrorModel(400, 'Bad Request')
-
-    const role = new RoleModel(
-        uuid(),
-        name,
-        Date()
-    )
-
-    entities.push(role)
-    
+    const role = repository.create({ name })
     res.status(201).json(role)
 });
 
