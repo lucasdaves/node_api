@@ -1,20 +1,16 @@
 import { Router } from 'express';
 import { ErrorModel } from '../models/error_model';
-import { RoleRepository } from '../repositories/role_repository';
+import { RoleController } from '../controllers/role/role_controller';
 
 const router = Router()
-const repository = new RoleRepository()
+const controller = new RoleController()
 
 router.get('/', (req, res) => {
-    const roles = repository.findAll()
-    res.status(200).json(roles)
+    controller.getAll(req, res)
 });
 
 router.post('/', (req, res) => {
-    const {name} = req.body
-    if(!name) throw new ErrorModel(400, 'Bad Request')
-    const role = repository.create({ name })
-    res.status(201).json(role)
+    controller.create(req, res)
 });
 
 export default router;
