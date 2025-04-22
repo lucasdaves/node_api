@@ -1,16 +1,14 @@
 import { Router } from 'express';
-import { ErrorModel } from '../models/error_model';
-import { RoleController } from '../controllers/role/role_controller';
+import { roleController } from '../controllers/role/role_export'
 
 const router = Router()
-const controller = new RoleController()
 
 router.get('/', (req, res) => {
-    controller.getAll(req, res)
+    roleController.getAll(req, res)
 });
 
 router.post('/', (req, res) => {
-    controller.create(req, res)
+    roleController.create(req, res)
 });
 
 export default router;

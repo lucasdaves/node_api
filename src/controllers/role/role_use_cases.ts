@@ -10,4 +10,8 @@ export class RoleUseCases {
         if(alreadyExists) throw new ErrorModel(400, 'Role already exists')
         return this.repository.create({ name })
     }
+
+    getRoles() : RoleModel[] {
+        return this.repository.findAll()
+    }
 }
