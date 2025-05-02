@@ -1,10 +1,20 @@
 import { RoleModel, RoleModelDTO } from "../models/role_model";
 
 export class RoleRepository {
+  public static INSTANCE: RoleRepository;
+
   private entities: RoleModel[];
 
-  constructor() {
+  private constructor() {
     this.entities = [];
+  }
+
+  public static getInstance(): RoleRepository {
+    if (!RoleRepository.INSTANCE) {
+      RoleRepository.INSTANCE = new RoleRepository();
+    }
+
+    return RoleRepository.INSTANCE;
   }
 
   create({ name }: RoleModelDTO): RoleModel {
@@ -14,7 +24,6 @@ export class RoleRepository {
   }
 
   findAll(): RoleModel[] {
-    console.log(this.entities);
     return this.entities;
   }
 
