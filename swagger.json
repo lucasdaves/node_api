@@ -1,0 +1,12 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "NODE_API Documentation",
+        "description": "MyApi Documentation with all especifications",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Lucas Daves",
+            "email": "lucas.guli@hotmail.com"
+        }
+    }
+}
